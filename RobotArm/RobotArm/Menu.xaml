@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RobotArm.Menu">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="350"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackLayout Padding="5,10" Grid.Row="0" Opacity="0.9" BackgroundColor="MediumVioletRed">
+            <Label FontSize="22" Margin="4" FontAttributes="Bold" Font="bold" TextColor="GhostWhite"  Opacity="3" WidthRequest="120" HorizontalOptions="Center">Mi robot</Label>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal" Padding="5,10" BackgroundColor="SlateGray"  Opacity="0.9" Grid.Row="1" >
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal" Margin="3" >
+                    <Label Text="Motor" WidthRequest="40" FontSize="12"/>
+                    <Picker x:Name="cmbMotor" FontSize="12" BackgroundColor="White" HorizontalOptions="FillAndExpand" WidthRequest="80" SelectedIndexChanged="CmbMotor_SelectedIndexChanged">
+                        <Picker.Items>
+                            <x:String>A</x:String>
+                            <x:String>B</x:String>
+                            <x:String>C</x:String>
+                            <x:String>D</x:String>
+                            <x:String>E</x:String>
+                            <x:String>F</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" Margin="3">
+                    <Label Text="Tipo" WidthRequest="40" FontSize="12"/>
+                    <Picker x:Name="cmbTipo" FontSize="12"  WidthRequest="80" BackgroundColor="White" HorizontalOptions="FillAndExpand" SelectedIndexChanged="CmbTipo_SelectedIndexChanged">
+                        <Picker.Items>
+                            <x:String>-</x:String>
+                            <x:String>+</x:String>
+                            <x:String>Ninguno</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <Entry x:Name="txtValor" WidthRequest="80" HeightRequest="30" FontSize="12"  Placeholder="Valor"/>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout x:Name="stValores" Grid.Row="2" Orientation="Horizontal"/>
+        <StackLayout Grid.Row="3" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" >
+            <StackLayout Orientation="Vertical">
+                <Button x:Name="btnIngresar" Clicked="BtnIngresar_Clicked" Text="Ingresar" WidthRequest="80"  FontSize="9"/>
+                <Button x:Name="btnActualizar" Clicked="BtnActualizar_Clicked" Text="Actualizar" WidthRequest="80"  FontSize="9"/>
+                <Button x:Name="btnNueva" Clicked="BtnNueva_Clicked" Text="Nueva" WidthRequest="80"  FontSize="9"/>
+                <Button x:Name="btnSubir" Clicked="BtnSubir_Clicked" Text="Subir" WidthRequest="80"  FontSize="9"/>
+                <Button x:Name="btnBajar" Clicked="BtnBajar_Clicked" Text="Bajar" WidthRequest="80"  FontSize="9"/>
+                <Button x:Name="btnEliminar" Clicked="BtnEliminar_Clicked" Text="Eliminar" WidthRequest="80" FontSize="9"/>
+            </StackLayout>
+            <ListView x:Name="listValores" BackgroundColor="Gainsboro"  WidthRequest="245">
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Motor}" Grid.Column="0"/>
+                                <Label Text="{Binding Tipo}" Grid.Column="1"/>
+                                <Label Text="{Binding Valor}" Grid.Column="2" HorizontalTextAlignment="End"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <Button x:Name="btnEjecutar" Clicked="BtnEjecutar_Clicked" Image="/Imagenes/Ejecutar.ico" Text="Ejecutar" Grid.Row="4" WidthRequest="80" HorizontalOptions="FillAndExpand"/>
+    </Grid>
+</ContentPage>
